@@ -19,7 +19,7 @@ from ..models.storage import (
 from .preview_widget import PreviewWidget
 from .widgets.contact_form import ContactForm
 from .widgets.experience_editor import ExperienceEditor
-from .widgets.section_editors import EducationEditor, SkillsEditor
+from .widgets.section_editors import EducationEditor, SkillsEditor, ProjectsEditor, CertificationsEditor
 from .advisor_dialog import AdvisorDialog
 from .job_match_dialog import JobMatchDialog
 
@@ -125,6 +125,14 @@ class MainWindow(QMainWindow):
         exp_scroll.setWidget(self.editor_experience)
         self.tab_widget.addTab(exp_scroll, "Work Experience")
 
+        # Tab: Projects
+        projects_scroll = QScrollArea()
+        projects_scroll.setWidgetResizable(True)
+        self.editor_projects = ProjectsEditor()
+        self.editor_projects.data_changed.connect(self._on_form_changed)
+        projects_scroll.setWidget(self.editor_projects)
+        self.tab_widget.addTab(projects_scroll, "Projects")
+
         # Tab: Skills
         skills_scroll = QScrollArea()
         skills_scroll.setWidgetResizable(True)
@@ -141,6 +149,14 @@ class MainWindow(QMainWindow):
         edu_scroll.setWidget(self.editor_education)
         self.tab_widget.addTab(edu_scroll, "Education")
 
+        # Tab: Certifications
+        cert_scroll = QScrollArea()
+        cert_scroll.setWidgetResizable(True)
+        self.editor_certifications = CertificationsEditor()
+        self.editor_certifications.data_changed.connect(self._on_form_changed)
+        cert_scroll.setWidget(self.editor_certifications)
+        self.tab_widget.addTab(cert_scroll, "Certifications")
+
         left_layout.addWidget(self.tab_widget)
         main_layout.addWidget(left_panel, 50)
 
@@ -151,23 +167,35 @@ class MainWindow(QMainWindow):
 
     def _sync_model_from_ui(self):
         """Pulls current form values into self.current_resume."""
+        if getattr(self, "_loading_draft", False):
+            return
         self.current_resume.contact = self.form_contact.get_data()
         self.current_resume.summary = self.txt_summary.toPlainText().strip()
         self.current_resume.experience = self.editor_experience.get_data()
+        self.current_resume.projects = self.editor_projects.get_data()
         self.current_resume.education = self.editor_education.get_data()
         self.current_resume.skill_categories = self.editor_skills.get_data()
+        self.current_resume.certifications = self.editor_certifications.get_data()
 
     def _load_resume_into_ui(self, resume: Resume):
         """Loads a Resume model object into the UI inputs."""
         self.current_resume = resume
-        self.form_contact.set_data(resume.contact)
-        self.txt_summary.setPlainText(resume.summary)
-        self.editor_experience.set_data(resume.experience)
-        self.editor_education.set_data(resume.education)
-        self.editor_skills.set_data(resume.skill_categories)
+        self._loading_draft = True
+        try:
+            self.form_contact.set_data(resume.contact)
+            self.txt_summary.setPlainText(resume.summary)
+            self.editor_experience.set_data(resume.experience)
+            self.editor_projects.set_data(resume.projects)
+            self.editor_education.set_data(resume.education)
+            self.editor_skills.set_data(resume.skill_categories)
+            self.editor_certifications.set_data(resume.certifications)
+        finally:
+            self._loading_draft = False
         self.preview_widget.update_preview(resume)
 
     def _on_form_changed(self):
+        if getattr(self, "_loading_draft", False):
+            return
         self._sync_model_from_ui()
         self.preview_widget.update_preview(self.current_resume)
 
