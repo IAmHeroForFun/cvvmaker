@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio — The Art of a Better Resume</title>
+  <meta name="description" content="Design a polished, production-quality CV that tells your story. Premium, 100% offline, editorial resume builder with live preview and dual export.">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2318181B'><rect width='24' height='24' rx='6' fill='%2318181B'/><path d='M8 6h8M8 11h8M8 16h5' stroke='%23B87333' stroke-width='2' stroke-linecap='round'/></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" aria-label="Folio Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </span>
+        Folio
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#templates" class="nav-link">Templates</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#students" class="nav-link">Students</a></li>
+          <li><a href="#my-resumes" class="nav-link trigger-auth">My Resumes</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#signin" class="nav-sign-in trigger-auth">Sign in</a>
+        <a href="#create" class="btn btn-primary trigger-create-cv">
+          <span>Create my CV</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#templates" class="nav-link">Templates</a>
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#students" class="nav-link">Student Edition</a>
+    <a href="#my-resumes" class="nav-link trigger-auth">My Resumes</a>
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 8px 0;">
+    <a href="#signin" class="btn btn-secondary trigger-auth" style="width: 100%;">Sign in</a>
+    <a href="#create" class="btn btn-primary trigger-create-cv" style="width: 100%;">Create my CV</a>
+  </div>
+
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION
+         ========================================================================= -->
+    <section id="home" class="section hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Left Column: Copy & Actions -->
+          <div class="hero-content">
+            <div class="eyebrow-badge">
+              <span class="floating-dot" style="background-color: var(--accent-copper);"></span>
+              THE ART OF A BETTER RESUME
+            </div>
+
+            <h1 class="hero-title">
+              Your experience.<br>
+              <em>Beautifully presented.</em>
+            </h1>
+
+            <p class="hero-description">
+              Create a polished, professional CV that tells your story. Choose a design, add your details, and get ready for your next opportunity.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#create" class="btn btn-primary btn-lg trigger-create-cv">
+                <span>Create my CV</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+
+              <a href="#templates" class="btn btn-secondary btn-lg">
+                Explore templates
+              </a>
+            </div>
+
+            <div class="hero-trust-bar">
+              <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>100% Private & Offline</span>
+              </div>
+              <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>ATS Quality Scoring</span>
+              </div>
+              <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Dual PDF & DOCX Export</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Realistic Elevated Paper Resume Preview -->
+          <div class="hero-preview-wrapper">
+            <!-- Floating UI Labels -->
+            <div class="floating-badge floating-badge-top">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              <span>Clean layout</span>
+            </div>
+
+            <div class="floating-badge floating-badge-bottom">
+              <span class="floating-dot"></span>
+              <span>Ready to export · 300 DPI</span>
+            </div>
+
+            <!-- Elevated Paper Card -->
+            <article class="resume-paper-card" aria-label="Resume Preview for Julian Vance">
+              <header class="cv-preview-header">
+                <h2 class="cv-candidate-name">Julian Vance</h2>
+                <div class="cv-candidate-title">Principal Product Strategist</div>
+                <div class="cv-candidate-meta">
+                  <span>julian.vance@folio.studio</span>
+                  <span>•</span>
+                  <span>+1 (555) 203-8819</span>
+                  <span>•</span>
+                  <span>San Francisco, CA</span>
+                  <span>•</span>
+                  <span>linkedin.com/in/julianvance</span>
+                </div>
+              </header>
+
+              <!-- Profile Summary -->
+              <section class="cv-section">
+                <div class="cv-sec-title">Executive Profile</div>
+                <p class="cv-p">
+                  Strategic design leader with 8+ years architecting high-impact digital experiences. Expert in turning complex system workflows into intuitive consumer-facing products with measurable engagement and retention metrics.
+                </p>
+              </section>
+
+              <!-- Experience -->
+              <section class="cv-section">
+                <div class="cv-sec-title">Professional Experience</div>
+                
+                <div class="cv-item">
+                  <div class="cv-item-row">
+                    <span class="cv-item-title">Principal Product Designer — Solstice Platforms</span>
+                  </div>
+                  <div class="cv-item-sub">Enterprise UX & Systems Architecture · 2021 – Present</div>
+                  <ul class="cv-bullets">
+                    <li>Spearheaded design system unification across 4 web apps, reducing release cycles by 40%.</li>
+                    <li>Designed core onboarding funnel, lifting monthly active users from 120k to 1.8M.</li>
+                  </ul>
+                </div>
+
+                <div class="cv-item">
+                  <div class="cv-item-row">
+                    <span class="cv-item-title">Senior Product Strategist — Nexus Collective</span>
+                  </div>
+                  <div class="cv-item-sub">Product Discovery & Client Advisory · 2018 – 2021</div>
+                  <ul class="cv-bullets">
+                    <li>Delivered 14 enterprise client engagements, achieving a 98% CSAT score.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Education & Skills -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <section class="cv-section">
+                  <div class="cv-sec-title">Education</div>
+                  <div class="cv-item-title" style="font-size: 0.78rem;">B.S. in Cognitive Science</div>
+                  <div class="cv-item-sub" style="font-size: 0.72rem;">UC Berkeley · Honors</div>
+                </section>
+
+                <section class="cv-section">
+                  <div class="cv-sec-title">Key Competencies</div>
+                  <div class="cv-tags">
+                    <span class="cv-tag">Product Strategy</span>
+                    <span class="cv-tag">Systems Design</span>
+                    <span class="cv-tag">PAR Analytics</span>
+                  </div>
+                </section>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. TEMPLATE SHOWCASE SECTION
+         ========================================================================= -->
+    <section id="templates" class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-eyebrow">EDITORIAL DESIGNS</span>
+          <h2 class="section-title">Find the style that speaks for you.</h2>
+          <p class="section-subtitle">Thoughtfully designed templates for every career stage.</p>
+        </header>
+
+        <div class="templates-grid">
+          
+          <!-- 1. The Classic -->
+          <div class="template-card tpl-classic">
+            <div class="template-preview-frame">
+              <div class="template-mini-sheet">
+                <div class="mini-header">
+                  <div class="mini-name">ELEANOR VANCE</div>
+                  <div style="font-size: 0.5rem; color: #71717A; text-transform: uppercase;">Corporate Director</div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title">Experience</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-md"></div>
+                  <div class="mini-line mini-line-sm"></div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title">Education & Credentials</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-md"></div>
+                </div>
+              </div>
+            </div>
+            <div class="template-info">
+              <h3 class="template-name">The Classic</h3>
+              <p class="template-desc">Traditional, structured, and professional. Engineered with serif authority for legal, executive, and financial leaders.</p>
+              <div class="template-actions">
+                <button class="btn btn-secondary btn-sm" data-template="classic">Preview template</button>
+                <button class="btn btn-primary btn-sm trigger-create-cv" style="padding: 8px 12px;">Use</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. The Minimalist -->
+          <div class="template-card tpl-minimal">
+            <div class="template-preview-frame">
+              <div class="template-mini-sheet">
+                <div class="mini-header">
+                  <div class="mini-name">Marcus Aurel</div>
+                  <div style="font-size: 0.5rem; color: #71717A;">Staff Systems Architect</div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title" style="color: #18181B;">Background</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-md"></div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title" style="color: #18181B;">Selected Roles</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-sm"></div>
+                </div>
+              </div>
+            </div>
+            <div class="template-info">
+              <h3 class="template-name">The Minimalist</h3>
+              <p class="template-desc">Clean, simple, and whitespace-focused. Puts your achievements front and center with zero distracting ornamentation.</p>
+              <div class="template-actions">
+                <button class="btn btn-secondary btn-sm" data-template="minimalist">Preview template</button>
+                <button class="btn btn-primary btn-sm trigger-create-cv" style="padding: 8px 12px;">Use</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. The Modern -->
+          <div class="template-card tpl-modern">
+            <div class="template-preview-frame">
+              <div class="template-mini-sheet">
+                <div class="mini-header">
+                  <div class="mini-name">JULIAN VANCE</div>
+                  <div style="font-size: 0.5rem; color: #B87333; font-weight: 600;">Product Strategist</div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title">Key Accomplishments</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-md"></div>
+                  <div class="mini-line mini-line-sm"></div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title">Core Skills</div>
+                  <div class="mini-line mini-line-md"></div>
+                </div>
+              </div>
+            </div>
+            <div class="template-info">
+              <h3 class="template-name">The Modern</h3>
+              <p class="template-desc">Contemporary layout with restrained copper accents. Ideal for tech leaders, engineers, and product creators.</p>
+              <div class="template-actions">
+                <button class="btn btn-secondary btn-sm" data-template="modern">Preview template</button>
+                <button class="btn btn-primary btn-sm trigger-create-cv" style="padding: 8px 12px;">Use</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. The Creative -->
+          <div class="template-card tpl-creative">
+            <div class="template-preview-frame">
+              <div class="template-mini-sheet">
+                <div class="mini-header">
+                  <div class="mini-name" style="font-family: 'DM Serif Display', Georgia, serif; font-size: 0.85rem;">Clara O'Connor</div>
+                  <span style="font-size: 0.45rem; color: #B87333; font-weight: bold;">ARCHITECT</span>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title">Editorial Statement</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-md"></div>
+                </div>
+                <div class="mini-sec">
+                  <div class="mini-sec-title">Exhibitions & Works</div>
+                  <div class="mini-line mini-line-lg"></div>
+                  <div class="mini-line mini-line-sm"></div>
+                </div>
+              </div>
+            </div>
+            <div class="template-info">
+              <h3 class="template-name">The Creative</h3>
+              <p class="template-desc">Distinctive and expressive while remaining deeply readable and professional. Tailored for design and media leaders.</p>
+              <div class="template-actions">
+                <button class="btn btn-secondary btn-sm" data-template="creative">Preview template</button>
+                <button class="btn btn-primary btn-sm trigger-create-cv" style="padding: 8px 12px;">Use</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. HOW IT WORKS
+         ========================================================================= -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-eyebrow">EFFORTLESS WORKFLOW</span>
+          <h2 class="section-title">How it works.</h2>
+          <p class="section-subtitle">A seamless process designed to take you from blank page to job-ready in minutes.</p>
+        </header>
+
+        <div class="steps-grid">
+          
+          <div class="step-card">
+            <div class="step-number">
+              <span>01</span>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Choose your template.</h3>
+            <p class="step-desc">Select from our collection of four curated, ATS-tested editorial layouts crafted for your specific career trajectory.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">
+              <span>02</span>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Add your details.</h3>
+            <p class="step-desc">Input your experience while our built-in PAR/CAR quality analyzer flags passive phrasing and suggests quantifiable impact.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">
+              <span>03</span>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </div>
+            </div>
+            <h3 class="step-title">Download your CV.</h3>
+            <p class="step-desc">Instantly export pixel-accurate 300 DPI PDFs for application portals or editable DOCX files for recruitment agency workflows.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. FEATURES SECTION
+         ========================================================================= -->
+    <section id="features" class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-eyebrow">CRAFTED FOR ACCURACY</span>
+          <h2 class="section-title">Built with intention.</h2>
+          <p class="section-subtitle">Every tool you need to craft an exceptional, high-converting CV.</p>
+        </header>
+
+        <div class="features-grid">
+          
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </div>
+            <h3 class="feature-title">Live resume preview.</h3>
+            <p class="feature-desc">Observe real-time typography, formatting, and page-break adjustments dynamically as you type your experience.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <h3 class="feature-title">Easy customisation.</h3>
+            <p class="feature-desc">Reorganise sections, adjust visual hierarchies, and refine layout density effortlessly without fighting margins.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <h3 class="feature-title">Professional PDF export.</h3>
+            <p class="feature-desc">Produces publication-grade, print-ready PDF files formatted strictly for modern Applicant Tracking Systems.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            </div>
+            <h3 class="feature-title">Student & fresher-friendly.</h3>
+            <p class="feature-desc">Dedicated project, coursework, and technical skills modules designed to highlight potential even with zero corporate tenure.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. STUDENT-FRIENDLY SECTION
+         ========================================================================= -->
+    <section id="students" class="section">
+      <div class="container">
+        <div class="student-card">
+          
+          <div class="student-text-content">
+            <span class="section-eyebrow">EARLY CAREER & GRADUATES</span>
+            <h2 class="student-headline font-serif">Starting your career? Start with confidence.</h2>
+            <p class="student-desc">
+              Organise your education, technical skills, college projects, internships, certifications, and academic achievements into an authoritative professional CV—even if you have limited formal work experience.
+            </p>
+
+            <ul class="student-features-list">
+              <li class="student-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Academic Project Showcases</span>
+              </li>
+              <li class="student-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Coursework & Capstone Highlights</span>
+              </li>
+              <li class="student-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Hackathons & Competition Honors</span>
+              </li>
+              <li class="student-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Structured Technical Skills Grids</span>
+              </li>
+            </ul>
+
+            <a href="#create" class="btn btn-primary btn-lg trigger-create-cv">
+              <span>Build your first CV</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="student-visual-box">
+            <div class="student-visual-pill">
+              <div class="student-visual-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="student-visual-text">
+                <h4>Smart Bullet Enhancer</h4>
+                <p>Turns "Created a database" into "Architected a relational schema handling 10k queries with 99.9% uptime."</p>
+              </div>
+            </div>
+
+            <div class="student-visual-pill">
+              <div class="student-visual-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              </div>
+              <div class="student-visual-text">
+                <h4>GitHub & Portfolio Integration</h4>
+                <p>Clean links to live repositories, research papers, and live deployment demonstrations.</p>
+              </div>
+            </div>
+
+            <div class="student-visual-pill">
+              <div class="student-visual-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="student-visual-text">
+                <h4>1-Page Strict Pagination</h4>
+                <p>Enforces standard single-page length guidelines recommended by top corporate recruiters.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. FINAL CTA
+         ========================================================================= -->
+    <section class="section" style="padding-bottom: 120px;">
+      <div class="container">
+        <div class="cta-banner">
+          <span class="section-eyebrow">YOUR CAREER AWAITS</span>
+          <h2 class="cta-banner-title font-serif">Make your next move count.</h2>
+          <p class="cta-banner-subtitle">
+            Your next opportunity deserves a great first impression. Start crafting your high-impact resume today.
+          </p>
+          <a href="#create" class="btn btn-primary btn-lg trigger-create-cv">
+            <span>Create my CV</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       8. FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo" style="color: #FAF7F2;">
+            <span class="brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </span>
+            Folio
+          </a>
+          <p class="footer-desc">
+            A minimal, editorial CV studio built for professionals who value craftsmanship, clarity, and true local privacy.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#templates">Templates</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#students">Student Edition</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="#create" class="trigger-create-cv">CV Builder</a></li>
+            <li><a href="#my-resumes" class="trigger-auth">My Drafts</a></li>
+            <li><a href="#about" class="trigger-auth">About Folio</a></li>
+            <li><a href="#contact" class="trigger-auth">Contact Studio</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal & Privacy</h4>
+          <ul class="footer-links">
+            <li><a href="#privacy" class="trigger-auth">Privacy Policy (100% Offline)</a></li>
+            <li><a href="#terms" class="trigger-auth">Terms of Service</a></li>
+            <li><a href="#security" class="trigger-auth">Security & Storage</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Folio Studio · All rights reserved. 100% offline & telemetry-free.</div>
+        <div class="footer-bottom-links">
+          <a href="#home">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       9. INTERACTIVE MODALS
+       ========================================================================= -->
+
+  <!-- Fullscreen Template Preview Modal -->
+  <div id="templateModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTemplateTitle">
+    <div class="modal-container" style="max-width: 720px;">
+      <button class="modal-close-btn" aria-label="Close dialog">✕</button>
+      <span class="section-eyebrow">TEMPLATE INSPECTOR</span>
+      <h3 id="modalTemplateTitle" class="modal-title font-serif">Template Preview</h3>
+      <p id="modalTemplateSubtitle" class="modal-subtitle">Full-scale layout preview and design specifications.</p>
+
+      <div id="modalTemplatePreview" class="template-modal-preview"></div>
+
+      <div style="background-color: var(--bg-alt); padding: 18px 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 24px; font-size: 0.88rem;">
+        <div style="margin-bottom: 6px;"><strong>Recommended For:</strong> <span id="modalBestFor" style="color: var(--text-muted);"></span></div>
+        <div><strong>Design Philosophy:</strong> <span id="modalSummary" style="color: var(--text-muted);"></span></div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <button class="btn btn-secondary modal-close-btn-action" onclick="document.getElementById('templateModal').classList.remove('active'); document.body.style.overflow='';">Close</button>
+        <button id="modalUseTemplateBtn" class="btn btn-primary">Use this template →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Studio Quick Start & Integration Modal -->
+  <div id="builderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="builderModalTitle">
+    <div class="modal-container">
+      <button class="modal-close-btn" aria-label="Close dialog">✕</button>
+      <span class="section-eyebrow">FOLIO STUDIO WORKSPACE</span>
+      <h3 id="builderModalTitle" class="modal-title font-serif">Create your CV</h3>
+      <p class="modal-subtitle">Choose your starting preference to begin editing.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px;">
+        <label style="font-size: 0.9rem; font-weight: 600; color: var(--text-main);">Selected Template:</label>
+        <select id="builderTemplateSelect" style="padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #FFF; font-family: var(--font-sans); font-size: 0.95rem;">
+          <option value="modern">The Modern — Contemporary with restrained copper accents</option>
+          <option value="classic">The Classic — Traditional & structured</option>
+          <option value="minimalist">The Minimalist — Clean & whitespace-focused</option>
+          <option value="creative">The Creative — Distinctive editorial header</option>
+        </select>
+
+        <div style="background-color: var(--accent-copper-light); border: 1px solid var(--accent-copper-subtle); padding: 16px; border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-main); margin-top: 8px;">
+          <strong>💡 Offline Studio Integration:</strong><br>
+          Folio operates seamlessly both in this browser interface and via our desktop native engine. Your data is stored locally in JSON format with zero cloud telemetry.
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="btn btn-primary" onclick="window.location.href = 'editor.html?template=' + document.getElementById('builderTemplateSelect').value;">
+          Continue with Pre-loaded Sample Profile →
+        </button>
+        <button class="btn btn-secondary" onclick="localStorage.removeItem('folio_resume_draft'); window.location.href = 'editor.html?template=' + document.getElementById('builderTemplateSelect').value;">
+          Start with Blank Document
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In & Privacy / Vault Modal -->
+  <div id="authModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+    <div class="modal-container">
+      <button class="modal-close-btn" aria-label="Close dialog">✕</button>
+      <span class="section-eyebrow">LOCAL VAULT & PRIVACY</span>
+      <h3 id="authModalTitle" class="modal-title font-serif">Your Private Space</h3>
+      <p class="modal-subtitle">100% offline, private, and secure on your local device.</p>
+
+      <div style="text-align: center; padding: 24px 0;">
+        <div style="width: 56px; height: 56px; background: var(--accent-copper-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-copper)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h4 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 8px;">No Cloud Accounts Required</h4>
+        <p style="font-size: 0.92rem; color: var(--text-muted); max-width: 420px; margin: 0 auto 20px auto;">
+          Unlike generic online builders, Folio never uploads your personal employment history or contact details to third-party databases. All resume drafts are stored locally as encrypted JSON files.
+        </p>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" onclick="document.getElementById('authModal').classList.remove('active'); document.body.style.overflow='';">
+          Understood & Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="static/js/app.js"></script>
+</body>
+</html>

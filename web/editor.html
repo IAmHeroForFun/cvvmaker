@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio Studio — CV Creator & Editor</title>
+  <meta name="description" content="Two-panel live CV editor with instant A4 preview, undo/redo, local auto-save, and publication-grade PDF export.">
+  <link rel="stylesheet" href="static/css/editor.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2318181B'><rect width='24' height='24' rx='6' fill='%2318181B'/><path d='M8 6h8M8 11h8M8 16h5' stroke='%23B87333' stroke-width='2' stroke-linecap='round'/></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. TOP STUDIO TOOLBAR
+       ========================================================================= -->
+  <header class="studio-navbar">
+    <div class="studio-nav-left">
+      <a href="index.html" class="studio-logo" title="Return to Folio Homepage">
+        <span class="studio-brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+        </span>
+        Folio Studio
+      </a>
+
+      <div class="studio-doc-title">
+        <span>Draft Document</span>
+        <div id="saveStatusPill" class="save-status-pill">
+          <span class="save-dot"></span>
+          <span id="saveStatusText">Saved to Local Vault</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="studio-nav-center">
+      <div class="template-picker-group">
+        <span>Theme:</span>
+        <select id="templateSelect" class="studio-select" aria-label="Resume Theme">
+          <option value="modern">The Modern — Contemporary Copper</option>
+          <option value="classic">The Classic — Traditional Serif</option>
+          <option value="minimalist">The Minimalist — Clean Whitespace</option>
+          <option value="creative">The Creative — Editorial Masthead</option>
+        </select>
+      </div>
+
+      <div class="history-btn-group" role="group" aria-label="Undo and Redo">
+        <button id="btnUndo" class="tool-icon-btn" title="Undo (Ctrl+Z)" disabled aria-label="Undo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7v6h6"></path>
+            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+          </svg>
+        </button>
+        <button id="btnRedo" class="tool-icon-btn" title="Redo (Ctrl+Y)" disabled aria-label="Redo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 7v6h-6"></path>
+            <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="studio-nav-right">
+      <button id="btnLoadSample" class="btn-ghost" title="Reset and load standard executive sample profile">
+        Load Sample
+      </button>
+      <button id="btnExportJson" class="btn-ghost" title="Export local offline JSON draft">
+        Export JSON
+      </button>
+      <button id="btnDownloadDOCX" class="btn-docx" title="Export as genuine Microsoft Word document (.docx)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span>Export DOCX</span>
+      </button>
+      <button id="btnDownloadPDF" class="btn-copper" title="Print or download high-resolution A4 PDF">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. PROGRESS TRACKER & STEPPER SUB-BAR
+       ========================================================================= -->
+  <div class="studio-progress-bar-wrap">
+    <div class="progress-overall">
+      <div class="progress-track">
+        <div id="progressFillBar" class="progress-fill" style="width: 75%;"></div>
+      </div>
+      <span id="progressPercentText" class="progress-text">75% Complete</span>
+    </div>
+
+    <div class="section-stepper-rail" role="tablist" aria-label="Resume Sections">
+      <div class="step-chip active completed" data-section-step="personal" onclick="document.getElementById('secPersonal').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Personal Details</span>
+      </div>
+      <div class="step-chip completed" data-section-step="summary" onclick="document.getElementById('secSummary').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Summary</span>
+      </div>
+      <div class="step-chip completed" data-section-step="experience" onclick="document.getElementById('secExperience').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Experience</span>
+      </div>
+      <div class="step-chip completed" data-section-step="education" onclick="document.getElementById('secEducation').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Education</span>
+      </div>
+      <div class="step-chip completed" data-section-step="projects" onclick="document.getElementById('secProjects').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Projects</span>
+      </div>
+      <div class="step-chip completed" data-section-step="skills" onclick="document.getElementById('secSkills').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Skills</span>
+      </div>
+      <div class="step-chip completed" data-section-step="certifications" onclick="document.getElementById('secCertifications').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Certifications</span>
+      </div>
+      <div class="step-chip completed" data-section-step="achievements" onclick="document.getElementById('secAchievements').scrollIntoView({behavior: 'smooth'})">
+        <span class="step-dot"></span>
+        <span>Achievements</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       3. TWO-PANEL WORKSPACE
+       ========================================================================= -->
+  <div class="studio-workspace">
+    
+    <!-- Left Column: Form Studio -->
+    <main class="form-panel" aria-label="CV Form Editor">
+
+      <!-- 1. Personal Details -->
+      <section id="secPersonal" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">1. Personal Details</h2>
+          <span class="form-sec-hint">Essential contact information</span>
+        </div>
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="inFullName">Full Legal Name*</label>
+            <input type="text" id="inFullName" class="form-input" placeholder="e.g. Julian Vance" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inHeadline">Target Professional Headline*</label>
+            <input type="text" id="inHeadline" class="form-input" placeholder="e.g. Principal Product Strategist">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="inEmail">Email Address*</label>
+            <input type="email" id="inEmail" class="form-input" placeholder="e.g. julian.vance@folio.studio" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inPhone">Phone Number</label>
+            <input type="tel" id="inPhone" class="form-input" placeholder="e.g. +1 (555) 203-8819">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="inLocation">Location (City, Country)</label>
+            <input type="text" id="inLocation" class="form-input" placeholder="e.g. San Francisco, CA or London, UK">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inLinkedin">LinkedIn Profile</label>
+            <input type="text" id="inLinkedin" class="form-input" placeholder="e.g. linkedin.com/in/julianvance">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="inGithub">GitHub / Code Repository</label>
+            <input type="text" id="inGithub" class="form-input" placeholder="e.g. github.com/julianvance">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inWebsite">Personal Website / Portfolio</label>
+            <input type="text" id="inWebsite" class="form-input" placeholder="e.g. julianvance.design">
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Professional Summary -->
+      <section id="secSummary" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">2. Professional Summary</h2>
+          <span class="form-sec-hint">3–4 sentences highlighting your core value</span>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <textarea id="inSummary" class="form-textarea" placeholder="Accomplished design strategist with 8+ years leading cross-functional teams in architecting high-throughput SaaS applications..."></textarea>
+          <div class="par-tip-box">
+            <strong>💡 ATS Advisory:</strong> Frame your summary with your years of experience, core technical domains, and primary business impact.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Work Experience -->
+      <section id="secExperience" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">3. Work Experience</h2>
+          <span class="form-sec-hint">Career history & quantifiable results</span>
+        </div>
+        
+        <div id="experienceListContainer"></div>
+
+        <button type="button" id="btnAddExperience" class="btn-add-item">
+          <span>+ Add Another Position</span>
+        </button>
+      </section>
+
+      <!-- 4. Education -->
+      <section id="secEducation" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">4. Education</h2>
+          <span class="form-sec-hint">Degrees, institutions, and academic honors</span>
+        </div>
+
+        <div id="educationListContainer"></div>
+
+        <button type="button" id="btnAddEducation" class="btn-add-item">
+          <span>+ Add Another Degree</span>
+        </button>
+      </section>
+
+      <!-- 5. Selected Projects -->
+      <section id="secProjects" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">5. Selected Projects</h2>
+          <span class="form-sec-hint">Open source, capstones, and architectural achievements</span>
+        </div>
+
+        <div id="projectsListContainer"></div>
+
+        <button type="button" id="btnAddProject" class="btn-add-item">
+          <span>+ Add Another Project</span>
+        </button>
+      </section>
+
+      <!-- 6. Skills -->
+      <section id="secSkills" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">6. Core Competencies & Skills</h2>
+          <span class="form-sec-hint">Separated by commas</span>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <input type="text" id="inSkills" class="form-input" placeholder="e.g. Product Strategy, Systems Architecture, React, TypeScript, Python, Heuristic Audits">
+          <div class="par-tip-box">
+            <strong>💡 Keywords Tip:</strong> High-frequency keywords match modern Applicant Tracking Systems (ATS) indexing algorithms.
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Certifications -->
+      <section id="secCertifications" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">7. Certifications & Credentials</h2>
+          <span class="form-sec-hint">Industry recognized certifications</span>
+        </div>
+
+        <div id="certificationsListContainer"></div>
+
+        <button type="button" id="btnAddCert" class="btn-add-item">
+          <span>+ Add Certification</span>
+        </button>
+      </section>
+
+      <!-- 8. Achievements -->
+      <section id="secAchievements" class="form-section-card">
+        <div class="form-sec-header">
+          <h2 class="form-sec-title">8. Honors & Achievements</h2>
+          <span class="form-sec-hint">Awards, hackathons, and published recognitions</span>
+        </div>
+
+        <div id="achievementsListContainer"></div>
+
+        <button type="button" id="btnAddAchievement" class="btn-add-item">
+          <span>+ Add Honor / Achievement</span>
+        </button>
+      </section>
+
+    </main>
+
+    <!-- Right Column: Live A4 Preview Engine -->
+    <aside class="preview-panel" aria-label="Live Resume Preview Canvas">
+      
+      <!-- Floating Zoom Controls -->
+      <div class="preview-floating-toolbar">
+        <button id="btnZoomOut" class="zoom-btn" title="Zoom Out">−</button>
+        <span id="zoomLabel" class="zoom-label">100%</span>
+        <button id="btnZoomIn" class="zoom-btn" title="Zoom In">+</button>
+      </div>
+
+      <!-- Scalable A4 Document Paper -->
+      <div id="resumeCanvas" class="a4-sheet tpl-modern">
+        <!-- Live generated content rendered by editor.js -->
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- =========================================================================
+       4. MOBILE SEGMENTED CONTROLLER
+       ========================================================================= -->
+  <div class="mobile-view-switch" role="group" aria-label="Switch between Editor and Preview on mobile">
+    <button id="btnSwitchEdit" class="switch-btn active">✏️ Form Editor</button>
+    <button id="btnSwitchPreview" class="switch-btn">👁️ Live Preview (A4)</button>
+  </div>
+
+  <script src="static/js/editor.js"></script>
+</body>
+</html>
